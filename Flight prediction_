@@ -1,0 +1,1174 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "c17ae53a",
+   "metadata": {
+    "id": "c17ae53a"
+   },
+   "outputs": [],
+   "source": [
+    "# Importing Libraries\n",
+    "import numpy as np\n",
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt\n",
+    "import seaborn as sns"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "876fce54",
+   "metadata": {
+    "id": "876fce54"
+   },
+   "outputs": [
+    {
+     "ename": "FileNotFoundError",
+     "evalue": "[Errno 2] No such file or directory: 'Data_Train.csv'",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mFileNotFoundError\u001b[0m                         Traceback (most recent call last)",
+      "Cell \u001b[1;32mIn[2], line 2\u001b[0m\n\u001b[0;32m      1\u001b[0m \u001b[38;5;66;03m# Load the Dataset\u001b[39;00m\n\u001b[1;32m----> 2\u001b[0m df\u001b[38;5;241m=\u001b[39m\u001b[43mpd\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mread_csv\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[38;5;124;43mData_Train.csv\u001b[39;49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[43m)\u001b[49m\n",
+      "File \u001b[1;32m~\\anaconda3\\lib\\site-packages\\pandas\\util\\_decorators.py:211\u001b[0m, in \u001b[0;36mdeprecate_kwarg.<locals>._deprecate_kwarg.<locals>.wrapper\u001b[1;34m(*args, **kwargs)\u001b[0m\n\u001b[0;32m    209\u001b[0m     \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[0;32m    210\u001b[0m         kwargs[new_arg_name] \u001b[38;5;241m=\u001b[39m new_arg_value\n\u001b[1;32m--> 211\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m func(\u001b[38;5;241m*\u001b[39margs, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwargs)\n",
+      "File \u001b[1;32m~\\anaconda3\\lib\\site-packages\\pandas\\util\\_decorators.py:331\u001b[0m, in \u001b[0;36mdeprecate_nonkeyword_arguments.<locals>.decorate.<locals>.wrapper\u001b[1;34m(*args, **kwargs)\u001b[0m\n\u001b[0;32m    325\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mlen\u001b[39m(args) \u001b[38;5;241m>\u001b[39m num_allow_args:\n\u001b[0;32m    326\u001b[0m     warnings\u001b[38;5;241m.\u001b[39mwarn(\n\u001b[0;32m    327\u001b[0m         msg\u001b[38;5;241m.\u001b[39mformat(arguments\u001b[38;5;241m=\u001b[39m_format_argument_list(allow_args)),\n\u001b[0;32m    328\u001b[0m         \u001b[38;5;167;01mFutureWarning\u001b[39;00m,\n\u001b[0;32m    329\u001b[0m         stacklevel\u001b[38;5;241m=\u001b[39mfind_stack_level(),\n\u001b[0;32m    330\u001b[0m     )\n\u001b[1;32m--> 331\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m func(\u001b[38;5;241m*\u001b[39margs, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwargs)\n",
+      "File \u001b[1;32m~\\anaconda3\\lib\\site-packages\\pandas\\io\\parsers\\readers.py:950\u001b[0m, in \u001b[0;36mread_csv\u001b[1;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)\u001b[0m\n\u001b[0;32m    935\u001b[0m kwds_defaults \u001b[38;5;241m=\u001b[39m _refine_defaults_read(\n\u001b[0;32m    936\u001b[0m     dialect,\n\u001b[0;32m    937\u001b[0m     delimiter,\n\u001b[1;32m   (...)\u001b[0m\n\u001b[0;32m    946\u001b[0m     defaults\u001b[38;5;241m=\u001b[39m{\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mdelimiter\u001b[39m\u001b[38;5;124m\"\u001b[39m: \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m,\u001b[39m\u001b[38;5;124m\"\u001b[39m},\n\u001b[0;32m    947\u001b[0m )\n\u001b[0;32m    948\u001b[0m kwds\u001b[38;5;241m.\u001b[39mupdate(kwds_defaults)\n\u001b[1;32m--> 950\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43m_read\u001b[49m\u001b[43m(\u001b[49m\u001b[43mfilepath_or_buffer\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mkwds\u001b[49m\u001b[43m)\u001b[49m\n",
+      "File \u001b[1;32m~\\anaconda3\\lib\\site-packages\\pandas\\io\\parsers\\readers.py:605\u001b[0m, in \u001b[0;36m_read\u001b[1;34m(filepath_or_buffer, kwds)\u001b[0m\n\u001b[0;32m    602\u001b[0m _validate_names(kwds\u001b[38;5;241m.\u001b[39mget(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mnames\u001b[39m\u001b[38;5;124m\"\u001b[39m, \u001b[38;5;28;01mNone\u001b[39;00m))\n\u001b[0;32m    604\u001b[0m \u001b[38;5;66;03m# Create the parser.\u001b[39;00m\n\u001b[1;32m--> 605\u001b[0m parser \u001b[38;5;241m=\u001b[39m TextFileReader(filepath_or_buffer, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwds)\n\u001b[0;32m    607\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m chunksize \u001b[38;5;129;01mor\u001b[39;00m iterator:\n\u001b[0;32m    608\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m parser\n",
+      "File \u001b[1;32m~\\anaconda3\\lib\\site-packages\\pandas\\io\\parsers\\readers.py:1442\u001b[0m, in \u001b[0;36mTextFileReader.__init__\u001b[1;34m(self, f, engine, **kwds)\u001b[0m\n\u001b[0;32m   1439\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39moptions[\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mhas_index_names\u001b[39m\u001b[38;5;124m\"\u001b[39m] \u001b[38;5;241m=\u001b[39m kwds[\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mhas_index_names\u001b[39m\u001b[38;5;124m\"\u001b[39m]\n\u001b[0;32m   1441\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mhandles: IOHandles \u001b[38;5;241m|\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[1;32m-> 1442\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_engine \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_make_engine\u001b[49m\u001b[43m(\u001b[49m\u001b[43mf\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mengine\u001b[49m\u001b[43m)\u001b[49m\n",
+      "File \u001b[1;32m~\\anaconda3\\lib\\site-packages\\pandas\\io\\parsers\\readers.py:1735\u001b[0m, in \u001b[0;36mTextFileReader._make_engine\u001b[1;34m(self, f, engine)\u001b[0m\n\u001b[0;32m   1733\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mb\u001b[39m\u001b[38;5;124m\"\u001b[39m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;129;01min\u001b[39;00m mode:\n\u001b[0;32m   1734\u001b[0m         mode \u001b[38;5;241m+\u001b[39m\u001b[38;5;241m=\u001b[39m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mb\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m-> 1735\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mhandles \u001b[38;5;241m=\u001b[39m \u001b[43mget_handle\u001b[49m\u001b[43m(\u001b[49m\n\u001b[0;32m   1736\u001b[0m \u001b[43m    \u001b[49m\u001b[43mf\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m   1737\u001b[0m \u001b[43m    \u001b[49m\u001b[43mmode\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m   1738\u001b[0m \u001b[43m    \u001b[49m\u001b[43mencoding\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43moptions\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mget\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43mencoding\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;28;43;01mNone\u001b[39;49;00m\u001b[43m)\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m   1739\u001b[0m \u001b[43m    \u001b[49m\u001b[43mcompression\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43moptions\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mget\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43mcompression\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;28;43;01mNone\u001b[39;49;00m\u001b[43m)\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m   1740\u001b[0m \u001b[43m    \u001b[49m\u001b[43mmemory_map\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43moptions\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mget\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43mmemory_map\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;28;43;01mFalse\u001b[39;49;00m\u001b[43m)\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m   1741\u001b[0m \u001b[43m    \u001b[49m\u001b[43mis_text\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mis_text\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m   1742\u001b[0m \u001b[43m    \u001b[49m\u001b[43merrors\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43moptions\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mget\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43mencoding_errors\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43mstrict\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m)\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m   1743\u001b[0m \u001b[43m    \u001b[49m\u001b[43mstorage_options\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43moptions\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mget\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43mstorage_options\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;28;43;01mNone\u001b[39;49;00m\u001b[43m)\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m   1744\u001b[0m \u001b[43m\u001b[49m\u001b[43m)\u001b[49m\n\u001b[0;32m   1745\u001b[0m \u001b[38;5;28;01massert\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mhandles \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[0;32m   1746\u001b[0m f \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mhandles\u001b[38;5;241m.\u001b[39mhandle\n",
+      "File \u001b[1;32m~\\anaconda3\\lib\\site-packages\\pandas\\io\\common.py:856\u001b[0m, in \u001b[0;36mget_handle\u001b[1;34m(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)\u001b[0m\n\u001b[0;32m    851\u001b[0m \u001b[38;5;28;01melif\u001b[39;00m \u001b[38;5;28misinstance\u001b[39m(handle, \u001b[38;5;28mstr\u001b[39m):\n\u001b[0;32m    852\u001b[0m     \u001b[38;5;66;03m# Check whether the filename is to be opened in binary mode.\u001b[39;00m\n\u001b[0;32m    853\u001b[0m     \u001b[38;5;66;03m# Binary mode does not support 'encoding' and 'newline'.\u001b[39;00m\n\u001b[0;32m    854\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m ioargs\u001b[38;5;241m.\u001b[39mencoding \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mb\u001b[39m\u001b[38;5;124m\"\u001b[39m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;129;01min\u001b[39;00m ioargs\u001b[38;5;241m.\u001b[39mmode:\n\u001b[0;32m    855\u001b[0m         \u001b[38;5;66;03m# Encoding\u001b[39;00m\n\u001b[1;32m--> 856\u001b[0m         handle \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mopen\u001b[39;49m\u001b[43m(\u001b[49m\n\u001b[0;32m    857\u001b[0m \u001b[43m            \u001b[49m\u001b[43mhandle\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m    858\u001b[0m \u001b[43m            \u001b[49m\u001b[43mioargs\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mmode\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m    859\u001b[0m \u001b[43m            \u001b[49m\u001b[43mencoding\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mioargs\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mencoding\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m    860\u001b[0m \u001b[43m            \u001b[49m\u001b[43merrors\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43merrors\u001b[49m\u001b[43m,\u001b[49m\n\u001b[0;32m    861\u001b[0m \u001b[43m            \u001b[49m\u001b[43mnewline\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\n\u001b[0;32m    862\u001b[0m \u001b[43m        \u001b[49m\u001b[43m)\u001b[49m\n\u001b[0;32m    863\u001b[0m     \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[0;32m    864\u001b[0m         \u001b[38;5;66;03m# Binary mode\u001b[39;00m\n\u001b[0;32m    865\u001b[0m         handle \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mopen\u001b[39m(handle, ioargs\u001b[38;5;241m.\u001b[39mmode)\n",
+      "\u001b[1;31mFileNotFoundError\u001b[0m: [Errno 2] No such file or directory: 'Data_Train.csv'"
+     ]
+    }
+   ],
+   "source": [
+    "# Load the Dataset\n",
+    "df=pd.read_csv('Data_Train.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "964a02bf",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 1000
+    },
+    "id": "964a02bf",
+    "outputId": "8073b1bc-ae66-4139-f07e-b2bc609aa8ab"
+   },
+   "outputs": [],
+   "source": [
+    "df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "62f451b3",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 652
+    },
+    "id": "62f451b3",
+    "outputId": "0789f83e-2b20-4770-c9b6-c2d555668d4d"
+   },
+   "outputs": [],
+   "source": [
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4984b562",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 513
+    },
+    "id": "4984b562",
+    "outputId": "4899ee19-b88e-42b5-9d27-8e7e8d863b70"
+   },
+   "outputs": [],
+   "source": [
+    "df.tail()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "SIh3HNm2oG4L",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 300
+    },
+    "id": "SIh3HNm2oG4L",
+    "outputId": "a00aba3d-4daf-484c-c786-0c2779dd6f61"
+   },
+   "outputs": [],
+   "source": [
+    "df.describe()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "sAtn2qI2CJku",
+   "metadata": {
+    "id": "sAtn2qI2CJku"
+   },
+   "source": [
+    "Understanding through Vizualization"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "RX8GwU-6CRGZ",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 517
+    },
+    "id": "RX8GwU-6CRGZ",
+    "outputId": "bcd0e6f3-bd6a-48a1-abed-69be1482a7df"
+   },
+   "outputs": [],
+   "source": [
+    "# Uni-variate Analysis\n",
+    "# As there is only one numerical data column\n",
+    "plt.hist(df['Price'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "OzK2xuENC5t7",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "OzK2xuENC5t7",
+    "outputId": "926e172c-12f5-4d5b-d5a1-5b8408075ac1"
+   },
+   "outputs": [],
+   "source": [
+    "total_stops=df['Total_Stops'].value_counts()\n",
+    "total_stops"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2vFtIEYODuSH",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 666
+    },
+    "id": "2vFtIEYODuSH",
+    "outputId": "374a5129-1857-4f40-974b-3e1bfeab78e6"
+   },
+   "outputs": [],
+   "source": [
+    "plt.pie(total_stops,autopct='%.2f',labels=['1 stop','non-stop','2 stops','3 stops','4 stops'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "278e49f2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Bi-Variate Analysis\n",
+    "sns.scatterplot(data=df, x='Price', y='Total_Stops')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "MbRC0_Vx1r95",
+   "metadata": {
+    "id": "MbRC0_Vx1r95"
+   },
+   "source": [
+    "Descriptive Statistics"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "NEkUuquC1jk6",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "NEkUuquC1jk6",
+    "outputId": "c9e8ffe6-3270-4f4f-fe24-d10574a23886"
+   },
+   "outputs": [],
+   "source": [
+    "print(df.describe())\n",
+    "\n",
+    "print('median')\n",
+    "print(df.median())\n",
+    "\n",
+    "print('mode')\n",
+    "print(df.mode())\n",
+    "\n",
+    "print(df.kurt())\n",
+    "\n",
+    "print('printing quartile')\n",
+    "quantile=df.quantile(q=[0.75,0.25])\n",
+    "print(quantile)\n",
+    "print(quantile.iloc[0])\n",
+    "print(df.quantile(0.5))\n",
+    "print(quantile.iloc[1])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "WnGu1a0Q1w8E",
+   "metadata": {
+    "id": "WnGu1a0Q1w8E"
+   },
+   "source": [
+    "Checking and Handing the NULL values"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b81bc73e",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 487
+    },
+    "id": "b81bc73e",
+    "outputId": "6b8e45f6-e62a-4f82-e9c5-75bae67b50f3"
+   },
+   "outputs": [],
+   "source": [
+    "df.isna()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ec6c40d0",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "ec6c40d0",
+    "outputId": "261f5c45-8469-4c1b-dbef-4dcbf008ab26"
+   },
+   "outputs": [],
+   "source": [
+    "df.isna().sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "YftXG-htotxa",
+   "metadata": {
+    "id": "YftXG-htotxa"
+   },
+   "outputs": [],
+   "source": [
+    "# Dropping the null values, as they are very less that is 2\n",
+    "df.dropna(inplace=True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1xpLwVWApBjT",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "1xpLwVWApBjT",
+    "outputId": "c6789732-2820-4476-f0b6-cad99cbb1d88"
+   },
+   "outputs": [],
+   "source": [
+    "# Checking again for null values\n",
+    "df.isna().sum()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "I00kZnk7158G",
+   "metadata": {
+    "id": "I00kZnk7158G"
+   },
+   "source": [
+    "Checking for Outliers"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c97de584",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 447
+    },
+    "id": "c97de584",
+    "outputId": "58d85300-0bcd-4df0-a84b-648693ec24e7"
+   },
+   "outputs": [],
+   "source": [
+    "sns.boxplot(df.Price)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ce428c17",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "ce428c17",
+    "outputId": "ece26725-90e1-4aa0-b7b1-24a004459b9e"
+   },
+   "outputs": [],
+   "source": [
+    "perc99=df.Price.quantile(0.99)\n",
+    "perc99"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "86b90c99",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 447
+    },
+    "id": "86b90c99",
+    "outputId": "53fa02eb-463b-45fe-9d65-64fb7d9bfd5e"
+   },
+   "outputs": [],
+   "source": [
+    "df=df[df.Price<=perc99]\n",
+    "sns.boxplot(df.Price)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5XeiWCJ5HfwK",
+   "metadata": {
+    "id": "5XeiWCJ5HfwK"
+   },
+   "source": [
+    "Handling Categorial Data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "jhGxF5b3HHtB",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 860
+    },
+    "id": "jhGxF5b3HHtB",
+    "outputId": "26d79bed-420b-4c3c-d8d9-cf430bb94faf"
+   },
+   "outputs": [],
+   "source": [
+    "# Handling date column\n",
+    "df['Journey_Day']= pd.to_datetime(df.Date_of_Journey, format='%d/%m/%Y').dt.day\n",
+    "df['Journey_Month']=pd.to_datetime(df.Date_of_Journey, format='%d/%m/%Y').dt.month\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "gStsjcvoHHV-",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 738
+    },
+    "id": "gStsjcvoHHV-",
+    "outputId": "cdedad1b-8547-41fe-aee6-24cc31af1d62"
+   },
+   "outputs": [],
+   "source": [
+    "df.drop(['Date_of_Journey'], axis=1, inplace=True)\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "HetLWy_7JyBh",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "HetLWy_7JyBh",
+    "outputId": "3362b4a4-9595-40c3-893f-e7b1261af048"
+   },
+   "outputs": [],
+   "source": [
+    "# Handling Dep_Time\n",
+    "df['Dep_hour']=pd.to_datetime(df['Dep_Time']).dt.hour\n",
+    "df['Dep_min']=pd.to_datetime(df['Dep_Time']).dt.minute"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "oCks7FcH6Www",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 738
+    },
+    "id": "oCks7FcH6Www",
+    "outputId": "5d48922e-acb3-4939-c3b8-45690b86b781"
+   },
+   "outputs": [],
+   "source": [
+    "df.drop(['Dep_Time'], axis=1, inplace=True)\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "qBGpd_AP6xKE",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "qBGpd_AP6xKE",
+    "outputId": "eb273d66-0b03-4479-b1d9-220661616597"
+   },
+   "outputs": [],
+   "source": [
+    "# Handling Arrival_Time\n",
+    "df['Arrival_hr']=pd.to_datetime(df['Arrival_Time']).dt.hour\n",
+    "df['Arrival_min']=pd.to_datetime(df['Arrival_Time']).dt.minute"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "BnLvbRAU6w6V",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 738
+    },
+    "id": "BnLvbRAU6w6V",
+    "outputId": "c0e3b8da-e376-4299-e3df-4e6550b7809e"
+   },
+   "outputs": [],
+   "source": [
+    "df.drop(['Arrival_Time'], axis=1, inplace=True)\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "WR_p2EWg_8CP",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 860
+    },
+    "id": "WR_p2EWg_8CP",
+    "outputId": "b988a7c6-c550-4163-baaa-d86c1c0897d2"
+   },
+   "outputs": [],
+   "source": [
+    "# Converting the duration into two different columns i.e, to numerical values\n",
+    "duration=list(df['Duration'])\n",
+    "\n",
+    "for i in range(len(duration)):\n",
+    "    if len(duration[i].split()) != 2:\n",
+    "        if \"h\" in duration[i]:\n",
+    "            duration[i] = duration[i].strip() + \" 0m\"\n",
+    "        else:\n",
+    "            duration[i] = \"0h \" + duration[i]\n",
+    "\n",
+    "duration_hours = []\n",
+    "duration_mins = []\n",
+    "for i in range(len(duration)):\n",
+    "    duration_hours.append(int(duration[i].split(sep = \"h\")[0]))\n",
+    "    duration_mins.append(int(duration[i].split(sep = \"m\")[0].split()[-1]))\n",
+    "df['Duration_hours']=duration_hours\n",
+    "df['Duration_mins']=duration_mins\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8Uk6oKoPJQc9",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 738
+    },
+    "id": "8Uk6oKoPJQc9",
+    "outputId": "60f80cdd-884d-4fa1-80ed-d46fed43ac1a"
+   },
+   "outputs": [],
+   "source": [
+    "df.drop(['Duration'], axis=1, inplace=True)\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7Mvk6GhDI6rk",
+   "metadata": {
+    "id": "7Mvk6GhDI6rk"
+   },
+   "source": [
+    "Handling Categorial data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4_mF8HhqANpq",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 461
+    },
+    "id": "4_mF8HhqANpq",
+    "outputId": "2c38348b-1c7c-4938-9ba4-250c5a0b9221"
+   },
+   "outputs": [],
+   "source": [
+    "# Dropping the unimportant column\n",
+    "df.drop(['Route'], axis=1, inplace=True)\n",
+    "df.drop(['Additional_Info'], axis=1, inplace=True)\n",
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1630db26",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 317
+    },
+    "id": "1630db26",
+    "outputId": "93d81ab4-d37f-4100-cb3b-2cdc02fe4945"
+   },
+   "outputs": [],
+   "source": [
+    "# Using one-hot encoding\n",
+    "df_main=pd.get_dummies(df,columns=['Airline','Source','Destination'])\n",
+    "df_main.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "lpWw1lwOMZG-",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 317
+    },
+    "id": "lpWw1lwOMZG-",
+    "outputId": "416a0b8a-e8fa-422a-bb70-d789891ed106"
+   },
+   "outputs": [],
+   "source": [
+    "df_main.replace({'non-stop':0, '1 stop':1, '2 stops':2, '3 stops':3, '4 stops':4}, inplace=True)\n",
+    "df_main.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "db586a32",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Multivariate analysis\n",
+    "plt.figure(figsize=(10,6))\n",
+    "sns.heatmap(df.corr(),annot=True)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7i0rqFpSMnMw",
+   "metadata": {
+    "id": "7i0rqFpSMnMw"
+   },
+   "source": [
+    "Split data into dependent and independent variable"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "wil75FHlMmmO",
+   "metadata": {
+    "id": "wil75FHlMmmO"
+   },
+   "outputs": [],
+   "source": [
+    "# Dependent variable is price\n",
+    "y=df_main['Price']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "Ybo2QQLbMw16",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "Ybo2QQLbMw16",
+    "outputId": "221776d6-660f-4396-de8d-5b23bdecdfab"
+   },
+   "outputs": [],
+   "source": [
+    "y.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "WtlJwZLfMwse",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 317
+    },
+    "id": "WtlJwZLfMwse",
+    "outputId": "80f61acd-ba06-4d41-9b4a-539e0d8eed47"
+   },
+   "outputs": [],
+   "source": [
+    "# Reamining are independent variables\n",
+    "X=df_main.drop(columns=['Price'],axis=1)\n",
+    "X.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "WroeyEI3MwoU",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "WroeyEI3MwoU",
+    "outputId": "88d0d64b-95b1-413c-9aeb-366b27623455"
+   },
+   "outputs": [],
+   "source": [
+    "name=X.columns\n",
+    "name"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d07VHTA3MwfR",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "d07VHTA3MwfR",
+    "outputId": "3aedd784-c97b-4e87-f8d0-e01161ea1151"
+   },
+   "outputs": [],
+   "source": [
+    "from sklearn.preprocessing import MinMaxScaler\n",
+    "scale=MinMaxScaler()\n",
+    "X_scaled=scale.fit_transform(X)\n",
+    "X_scaled"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "XqwTN3DtMwQ7",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 505
+    },
+    "id": "XqwTN3DtMwQ7",
+    "outputId": "a0dea3b0-fbfe-40b1-9d21-fb4507f94c63"
+   },
+   "outputs": [],
+   "source": [
+    "X=pd.DataFrame(X_scaled,columns=name)\n",
+    "X"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fHus5bJWNyGP",
+   "metadata": {
+    "id": "fHus5bJWNyGP"
+   },
+   "source": [
+    "Splitting data into traning and testing"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "yr12dE-QN4s-",
+   "metadata": {
+    "id": "yr12dE-QN4s-"
+   },
+   "outputs": [],
+   "source": [
+    "from sklearn.model_selection import train_test_split\n",
+    "X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=0)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "230f516a",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 317
+    },
+    "id": "P6CczZwcOPoQ",
+    "outputId": "4197b5c5-a25d-478a-b90e-311681c723f0"
+   },
+   "source": [
+    "X_train.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "x-vc7aDYOU4Z",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 317
+    },
+    "id": "x-vc7aDYOU4Z",
+    "outputId": "eed9bc99-53fc-4a46-f0b9-b13666e87a62"
+   },
+   "outputs": [],
+   "source": [
+    "X_test.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "mIHtWdH9Ok4y",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "mIHtWdH9Ok4y",
+    "outputId": "58ea0ca3-3fe2-4d51-fa89-028924adbf1d"
+   },
+   "outputs": [],
+   "source": [
+    "y_train"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4dUDT-LZOnHA",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "4dUDT-LZOnHA",
+    "outputId": "e62af9e0-caae-48fa-e2e2-1a691f1e4340"
+   },
+   "outputs": [],
+   "source": [
+    "y_test"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "GspeKu9nOxCV",
+   "metadata": {
+    "id": "GspeKu9nOxCV"
+   },
+   "source": [
+    "Building the Model"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ta03kJyIO40u",
+   "metadata": {
+    "id": "ta03kJyIO40u"
+   },
+   "outputs": [],
+   "source": [
+    "# Linear Regression\n",
+    "from sklearn.linear_model import LinearRegression\n",
+    "from sklearn.metrics import mean_squared_error, r2_score"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "Qft_R4tyO-a7",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "Qft_R4tyO-a7",
+    "outputId": "91b05ecb-cf2a-4a1a-eb3b-46480fc7be79"
+   },
+   "outputs": [],
+   "source": [
+    "model = LinearRegression().fit(X_train, y_train)\n",
+    "\n",
+    "\n",
+    "y_pred_train = model.predict(X_train)\n",
+    "y_pred_test = model.predict(X_test)\n",
+    "\n",
+    "\n",
+    "accuracy_train = model.score(X_train, y_train)\n",
+    "mse_train = mean_squared_error(y_train, y_pred_train)\n",
+    "r2_train = r2_score(y_train, y_pred_train)\n",
+    "accuracy_train\n",
+    "\n",
+    "\n",
+    "accuracy_test = model.score(X_test, y_test)\n",
+    "mse_test = mean_squared_error(y_test, y_pred_test)\n",
+    "r2_test = r2_score(y_test, y_pred_test)\n",
+    "\n",
+    "print(\"Accuracy - Train: {:} Test: {:}\".format(accuracy_train, accuracy_test))\n",
+    "print(\"MSE - Train: {:} Test: {:}\".format(mse_train, mse_test))\n",
+    "print(\"R2 - Train: {:} Test: {:}\".format(r2_train, r2_test))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "YtF8VsfRPB5P",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "YtF8VsfRPB5P",
+    "outputId": "86967265-86be-4d3d-baac-79a12b36f6b0"
+   },
+   "outputs": [],
+   "source": [
+    "# Decision Tree\n",
+    "from sklearn.tree import DecisionTreeRegressor\n",
+    "from sklearn.metrics import mean_squared_error, r2_score\n",
+    "\n",
+    "dt = DecisionTreeRegressor(random_state=42)\n",
+    "\n",
+    "dt.fit(X_train, y_train)\n",
+    "\n",
+    "# Predict the values for the training and testing sets\n",
+    "y_pred_train = dt.predict(X_train)\n",
+    "y_pred_test = dt.predict(X_test)\n",
+    "\n",
+    "# Compute the accuracy, MSE, and R2 for the training set\n",
+    "accuracy_train = dt.score(X_train, y_train)\n",
+    "mse_train = mean_squared_error(y_train, y_pred_train)\n",
+    "r2_train = r2_score(y_train, y_pred_train)\n",
+    "\n",
+    "# Compute the accuracy, MSE, and R2 for the testing set\n",
+    "accuracy_test = dt.score(X_test, y_test)\n",
+    "mse_test = mean_squared_error(y_test, y_pred_test)\n",
+    "r2_test = r2_score(y_test, y_pred_test)\n",
+    "print(\"Accuracy - Train: {:} Test: {:}\".format(accuracy_train, accuracy_test))\n",
+    "print(\"MSE - Train: {:} Test: {:}\".format(mse_train, mse_test))\n",
+    "print(\"R2 - Train: {:} Test: {:}\".format(r2_train, r2_test))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "GxbPVopePjpX",
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "GxbPVopePjpX",
+    "outputId": "83d0d415-25cc-40b1-fa33-bdcf54400b70"
+   },
+   "outputs": [],
+   "source": [
+    "# Random Forest\n",
+    "from sklearn.ensemble import RandomForestRegressor\n",
+    "from sklearn.metrics import mean_squared_error, r2_score\n",
+    "\n",
+    "rf = RandomForestRegressor(n_estimators=10, random_state=42)\n",
+    "\n",
+    "rf.fit(X_train, y_train)\n",
+    "\n",
+    "# Predict the values for the training and testing sets\n",
+    "y_pred_train = rf.predict(X_train)\n",
+    "y_pred_test = rf.predict(X_test)\n",
+    "\n",
+    "# Compute the accuracy, MSE, and R2 for the training set\n",
+    "accuracy_train = rf.score(X_train, y_train)\n",
+    "mse_train = mean_squared_error(y_train, y_pred_train)\n",
+    "r2_train = r2_score(y_train, y_pred_train)\n",
+    "\n",
+    "# Compute the accuracy, MSE, and R2 for the testing set\n",
+    "accuracy_test = rf.score(X_test, y_test)\n",
+    "mse_test = mean_squared_error(y_test, y_pred_test)\n",
+    "r2_test = r2_score(y_test, y_pred_test)\n",
+    "\n",
+    "print(\"Accuracy - Train: {:} Test: {:}\".format(accuracy_train, accuracy_test))\n",
+    "print(\"MSE - Train: {:} Test: {:}\".format(mse_train, mse_test))\n",
+    "print(\"R2 - Train: {:} Test: {:}\".format(r2_train, r2_test))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5ze6kUyyRYGk",
+   "metadata": {
+    "id": "5ze6kUyyRYGk"
+   },
+   "source": [
+    "So, here we can understand that the model is overfitting"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fa505f19",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Support vector Regressor\n",
+    "from sklearn.svm import SVR\n",
+    "svr=SVR().fit(X_train, y_train)\n",
+    "# Predict the values for the training and testing sets\n",
+    "y_pred_train = svr.predict(X_train)\n",
+    "y_pred_test = svr.predict(X_test)\n",
+    "\n",
+    "# Compute the accuracy, MSE, and R2 for the training set\n",
+    "accuracy_train = svr.score(X_train, y_train)\n",
+    "mse_train = mean_squared_error(y_train, y_pred_train)\n",
+    "r2_train = r2_score(y_train, y_pred_train)\n",
+    "\n",
+    "# Compute the accuracy, MSE, and R2 for the testing set\n",
+    "accuracy_test = svr.score(X_test, y_test)\n",
+    "mse_test = mean_squared_error(y_test, y_pred_test)\n",
+    "r2_test = r2_score(y_test, y_pred_test)\n",
+    "print(\"Accuracy - Train: {:} Test: {:}\".format(accuracy_train, accuracy_test))\n",
+    "print(\"MSE - Train: {:} Test: {:}\".format(mse_train, mse_test))\n",
+    "print(\"R2 - Train: {:} Test: {:}\".format(r2_train, r2_test))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0184ccb7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#GradientBossting Regressor\n",
+    "from sklearn.ensemble import GradientBoostingRegressor\n",
+    "gbr=GradientBoostingRegressor().fit(X_train,y_train)\n",
+    "# Predict the values for the training and testing sets\n",
+    "y_pred_train = gbr.predict(X_train)\n",
+    "y_pred_test = gbr.predict(X_test)\n",
+    "\n",
+    "# Compute the accuracy, MSE, and R2 for the training set\n",
+    "accuracy_train = gbr.score(X_train, y_train)\n",
+    "mse_train = mean_squared_error(y_train, y_pred_train)\n",
+    "r2_train = r2_score(y_train, y_pred_train)\n",
+    "\n",
+    "# Compute the accuracy, MSE, and R2 for the testing set\n",
+    "accuracy_test = gbr.score(X_test, y_test)\n",
+    "mse_test = mean_squared_error(y_test, y_pred_test)\n",
+    "r2_test = r2_score(y_test, y_pred_test)\n",
+    "print(\"Accuracy - Train: {:} Test: {:}\".format(accuracy_train, accuracy_test))\n",
+    "print(\"MSE - Train: {:} Test: {:}\".format(mse_train, mse_test))\n",
+    "print(\"R2 - Train: {:} Test: {:}\".format(r2_train, r2_test))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4c2c2b9c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Hypertuning\n",
+    "from sklearn.model_selection import RandomizedSearchCV"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8f37f4b9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "random_grid = {\n",
+    "    'n_estimators' : [100, 120, 150, 180, 200,220],\n",
+    "    'max_features':['auto','sqrt'],\n",
+    "    'max_depth':[5,10,15,20],\n",
+    "    }"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c3a3467d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "rf=RandomForestRegressor()\n",
+    "rf_random=RandomizedSearchCV(estimator=rf,param_distributions=random_grid,cv=3,verbose=2,n_jobs=-1,)\n",
+    "\n",
+    "rf_random.fit(X_train,y_train)\n",
+    "\n",
+    "# best parameter\n",
+    "rf_random.best_params_"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "afd947f0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# best parameter\n",
+    "rf_random.best_params_"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "866d403d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#predicting the values\n",
+    "prediction = rf_random.predict(X_test)\n",
+    "predict_train=rf_random.predict(X_train)\n",
+    "\n",
+    "#distribution plot between actual value and predicted value\n",
+    "sns.displot(y_test-prediction)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6072b025",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "accuracy=r2_score(y_test,prediction)\n",
+    "accuracy"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ddd1e4ff",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "r2_score(y_train,predict_train)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f920d370",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "mse=mean_squared_error(y_test, prediction)\n",
+    "mse"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "id": "f2e1f019",
+   "metadata": {},
+   "source": [
+    "By hypertuning the model, the accuracy increases. The model accuracy is 83.8%"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "feeb3410",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pickle\n",
+    "pickle.dump(rf_random,open(\"model.pkl\",\"wb\"))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "eb33be54",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "colab": {
+   "provenance": []
+  },
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
